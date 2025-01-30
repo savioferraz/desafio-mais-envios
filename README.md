@@ -48,6 +48,7 @@ Caso tenha dificuldades em fazer a requisição CURL, tente entrar diretamente n
 - source
 - price
 
+⭐ **Extra:** Se preferir, pode enviar a planilha pelo navegador através de uma interface na rota `http://localhost:5000`
 
 ## 🔄 Funcionalidades e Endpoints
 
