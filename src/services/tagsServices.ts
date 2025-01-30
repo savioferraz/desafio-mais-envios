@@ -1,6 +1,7 @@
 import { emptyFile, fileNotFound, invalidData, tagNotFound } from "../errors/errors";
 import * as XLSX from "xlsx";
 import { TSpreadSheet } from "../model/spreadSheet";
+import { jsonToTable } from "../utils/jsonToTable";
 
 export class TagsServices {
   spreadSheet: TSpreadSheet[] = [];
@@ -17,8 +18,14 @@ export class TagsServices {
     return this.spreadSheet;
   };
 
-  getTagTable = async () => {
+  getTagTable = async (format?: string) => {
     if (this.spreadSheet.length === 0) throw emptyFile();
+
+    if (format === "table") {
+      return jsonToTable(this.spreadSheet);
+    }
+
+    console.table(this.spreadSheet.map((row) => ({ ...row })));
 
     return this.spreadSheet;
   };

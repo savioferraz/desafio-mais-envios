@@ -19,7 +19,8 @@ export class TagController {
 
   getTagTable = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const result = await this.tagsServices.getTagTable();
+      const format = req.query.format as string;
+      const result = await this.tagsServices.getTagTable(format);
 
       res.status(httpStatus.OK).send(result);
     } catch (e) {
