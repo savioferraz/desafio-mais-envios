@@ -48,7 +48,10 @@ Caso tenha dificuldades em fazer a requisição CURL, tente entrar diretamente n
 - source
 - price
 
-⭐ **Extra:** Se preferir, pode enviar a planilha pelo navegador através de uma interface na rota `http://localhost:5000`
+### ⭐ Extra 
+Se preferir, pode enviar a planilha pelo navegador através de uma interface na rota `http://localhost:5000` \
+\
+Além disso, na rota `http://localhost:5000/tags?format=table` é possível visualizar a planilha em formato de tabela, ao invés de JSON.
 
 ## 🔄 Funcionalidades e Endpoints
 
@@ -67,11 +70,13 @@ Caso tenha dificuldades em fazer a requisição CURL, tente entrar diretamente n
 ### 2️⃣ **Obter a Planilha**
 - **Rota:** `GET /tags`
 - **Descrição:** Retorna os dados armazenados em memória.
+- **Parâmetros:** `format=table` (opcional) - Muda o formato de exibição de JSON para tabela
 - **Resposta:**
 ```json
 [
-  { "Tag": "AA123456789BR", "name": "João da Silva" },
-  { "Tag": "BB987654321BR", "name": "Maria Oliveira" }
+  { "Tag": "AA123456789BR", "name": "Fulano da Silva 1", "status": 1, "source": 39645000, "price": 10 },
+  { "Tag": "AB123456789BR", "name": "Fulano da Silva 2", "status": 1, "source": 13914022, "price": 14 },
+"..."
 ]
 ```
 
@@ -113,7 +118,5 @@ Caso tenha dificuldades em fazer a requisição CURL, tente entrar diretamente n
 - Os dados são armazenados **em memória**, ou seja, ao reiniciar o servidor, os dados serão perdidos.
 - A API **não** possui banco de dados.
 - Toda a comunicação ocorre via **requisições HTTP**.
+- A interface gráfica no navegador não é necessária para rodar o projeto.
 
-## 📅 Planos Futuros
-
-- Desenvolver uma **interface HTML básica** para que o usuário possa fazer o upload de arquivos sem precisar utilizar cURL ou outras ferramentas de linha de comando.
