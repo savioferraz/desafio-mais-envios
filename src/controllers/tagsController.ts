@@ -26,4 +26,24 @@ export class TagController {
       next(e);
     }
   };
+
+  updateTable = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { tagId } = req.params;
+      const { data } = req.body;
+
+      const result = await this.tagsServices.updateTable(tagId, data);
+
+      res.status(httpStatus.NO_CONTENT).send({ message: "Etiqueta atualizada com sucesso", result });
+    } catch (e) {
+      next(e);
+    }
+  };
+
+  deleteTableRow = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+    } catch (e) {
+      next(e);
+    }
+  };
 }

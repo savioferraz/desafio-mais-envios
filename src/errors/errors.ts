@@ -14,4 +14,11 @@ function emptyFile(): ApplicationError {
   };
 }
 
-export { fileNotFound, emptyFile };
+function tagNotFound(): ApplicationError {
+  return {
+    type: "tagNotFound",
+    message: "Tag não encontrada",
+  };
+}
+
+export { fileNotFound, emptyFile, tagNotFound };
