@@ -21,4 +21,11 @@ function tagNotFound(): ApplicationError {
   };
 }
 
-export { fileNotFound, emptyFile, tagNotFound };
+function invalidData(): ApplicationError {
+  return {
+    type: "invalidData",
+    message: "Dados inválidos. Os dados devem pertencer ao tipo TSpreadSheet (Tag, name, status, source ou price)",
+  };
+}
+
+export { fileNotFound, emptyFile, tagNotFound, invalidData };

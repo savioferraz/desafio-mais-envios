@@ -1,4 +1,4 @@
-import { emptyFile, fileNotFound, tagNotFound } from "../errors/errors";
+import { emptyFile, fileNotFound, invalidData, tagNotFound } from "../errors/errors";
 import * as XLSX from "xlsx";
 import { TSpreadSheet } from "../model/spreadSheet";
 
@@ -24,8 +24,10 @@ export class TagsServices {
   };
 
   updateTable = async (tagId: string, data: Partial<TSpreadSheet>) => {
-    const rowIndex = this.spreadSheet.findIndex((spreadSheet) => spreadSheet.Tag === tagId);
+    const isValid = this.validateData(data);
+    if (!isValid) throw invalidData();
 
+    const rowIndex = this.spreadSheet.findIndex((spreadSheet) => spreadSheet.Tag === tagId);
     if (rowIndex === -1) throw tagNotFound();
 
     this.spreadSheet[rowIndex] = Object.assign(this.spreadSheet[rowIndex], data);
@@ -34,4 +36,9 @@ export class TagsServices {
   };
 
   deleteRow = async () => {};
+
+  private validateData = (data: Partial<TSpreadSheet>) => {
+    const validKeys = ["Tag", "name", "status", "source", "price"];
+    return Object.keys(data).every((key) => validKeys.includes(key));
+  };
 }
