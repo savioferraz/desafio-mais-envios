@@ -35,7 +35,14 @@ export class TagsServices {
     return this.spreadSheet[rowIndex];
   };
 
-  deleteRow = async () => {};
+  deleteRow = async (tagId: string) => {
+    const rowIndex = this.spreadSheet.findIndex((spreadSheet) => spreadSheet.Tag === tagId);
+    if (rowIndex === -1) throw tagNotFound();
+
+    const result = this.spreadSheet.splice(rowIndex, 1);
+
+    return result[0];
+  };
 
   private validateData = (data: Partial<TSpreadSheet>) => {
     const validKeys = ["Tag", "name", "status", "source", "price"];

@@ -8,5 +8,6 @@ const tagController = new TagController();
 tagRouter.route("/").post(upload.single("file"), tagController.uploadTagTable);
 tagRouter.route("/").get(tagController.getTagTable);
 tagRouter.route("/:tagId").put(tagController.updateTable);
+tagRouter.route("/:tagId").delete(tagController.deleteTableRow);
 
 export default tagRouter;

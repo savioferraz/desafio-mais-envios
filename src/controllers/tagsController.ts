@@ -34,13 +34,18 @@ export class TagController {
 
       const result = await this.tagsServices.updateTable(tagId, data);
 
-      res.status(httpStatus.NO_CONTENT).send({ message: "Etiqueta atualizada com sucesso", result });
+      res.status(httpStatus.OK).send({ message: "Etiqueta atualizada com sucesso", result });
     } catch (e) {
       next(e);
     }
   };
 
   deleteTableRow = async (req: Request, res: Response, next: NextFunction) => {
+    const { tagId } = req.params;
+
+    await this.tagsServices.deleteRow(tagId);
+
+    res.status(httpStatus.OK).send({ message: `Etiqueta de id: ${tagId} deletada com sucesso` });
     try {
     } catch (e) {
       next(e);
