@@ -15,14 +15,21 @@ cd minha-pasta/desafio-mais-envios
 npm install
 ```
 
-## ▶️ Como Rodar o Projeto
+## ▶️ Como Rodar o Projeto (escolha um método abaixo)
 
-### 1. Inicie o servidor
+### 🐋 Pelo container Docker
+```sh
+docker-compose build
+docker-compose install
+```
+
+### 💻 Iniciar o servidor no terminal
 ```sh
 npm start
 ```
 
-O servidor será iniciado na porta `5000` e ficará disponível no endereço `http://localhost:5000`.
+O servidor será iniciado na porta `5000` e ficará disponível no endereço `http://localhost:5000`. \
+Apenas uma das etpapas acima é necessária para rodar a aplicação.
 
 ## 📤 Enviando uma planilha:
 
@@ -108,5 +115,4 @@ Caso tenha dificuldades em fazer a requisição CURL, tente entrar diretamente n
 
 ## 📅 Planos Futuros
 
-- Criar um **container Docker** para rodar o projeto de forma mais simples e portátil.
 - Desenvolver uma **interface HTML básica** para que o usuário possa fazer o upload de arquivos sem precisar utilizar cURL ou outras ferramentas de linha de comando.
