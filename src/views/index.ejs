@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload de Planilha</title>
+</head>
+
+<body>
+  <h1>Selecione a planilha e faça o upload no botão Enviar</h1>
+  
+  <form action="/tags" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".xlsx" required>
+      <button type="submit">Enviar</button>
+  </form>
+  <br>
+  <i>A planilha deve ser no formato .xlsx</i>
+  <br>
+  <i>O cabeçalho deve ser na primeira linha e deve conter os seguintes campos: Tag, name, status, source e price</i>
+</body>
+
+</html>
