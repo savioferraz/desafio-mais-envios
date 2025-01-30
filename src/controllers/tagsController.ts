@@ -34,7 +34,7 @@ export class TagController {
 
       const result = await this.tagsServices.updateTable(tagId, data);
 
-      res.status(httpStatus.OK).send({ message: "Etiqueta atualizada com sucesso", result });
+      res.status(httpStatus.OK).send({ message: `Etiqueta de id: ${tagId} atualizada com sucesso`, result });
     } catch (e) {
       next(e);
     }
