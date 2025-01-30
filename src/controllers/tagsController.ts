@@ -1,17 +1,23 @@
 import { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
 import { TagsServices } from "../services/tagsServices";
+import { ITagsController } from "./types";
 
-export class TagController {
+/**
+ * Classe controladora da rota `/tags`. Responsável por receber as requisições HTTP, chamar os métodos apropriados e devolver uma resposta.
+ */
+export class TagController implements ITagsController {
   tagsServices = new TagsServices();
 
-  uploadTagTable = async (req: Request, res: Response, next: NextFunction) => {
+  uploadTagTable = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const xlsxFile = req.file;
 
       const result = await this.tagsServices.uploadTagTable(xlsxFile?.buffer);
 
-      res.status(httpStatus.CREATED).send(result);
+      res
+        .status(httpStatus.CREATED)
+        .send({ message: `Planilha com ${result.length} etiquetas carregada com sucesso`, result });
     } catch (e) {
       next(e);
     }
@@ -35,7 +41,7 @@ export class TagController {
 
       const result = await this.tagsServices.updateTable(tagId, data);
 
-      res.status(httpStatus.OK).send({ message: `Etiqueta de id: ${tagId} atualizada com sucesso`, result });
+      res.status(httpStatus.OK).send({ message: `Etiqueta de id: ${tagId} atualizada com sucesso!`, result });
     } catch (e) {
       next(e);
     }

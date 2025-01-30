@@ -1,6 +1,11 @@
 import { TSpreadSheet } from "../model/spreadSheet";
 
-export const jsonToTable = (data: TSpreadSheet[]) => {
+/**
+ * Converte um array de objetos JSON em uma tabela HTML
+ * @param {TSpreadSheet} data  Array de objetos JSON
+ * @returns {string}  Tabela HTML
+ */
+export const jsonToTable = (data: TSpreadSheet[]): string => {
   return `
     <html>
       <head>

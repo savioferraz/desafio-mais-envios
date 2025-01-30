@@ -2,11 +2,15 @@ import { emptyFile, fileNotFound, invalidData, tagNotFound } from "../errors/err
 import * as XLSX from "xlsx";
 import { TSpreadSheet } from "../model/spreadSheet";
 import { jsonToTable } from "../utils/jsonToTable";
+import { ITagsServices } from "./types";
 
-export class TagsServices {
+/**
+ * Classe de serviços da rota `/tags`. Responsável por manipular os dados e aplicar as regras de negócio.
+ */
+export class TagsServices implements ITagsServices {
   spreadSheet: TSpreadSheet[] = [];
 
-  uploadTagTable = async (xlsxFile: any) => {
+  uploadTagTable = async (xlsxFile: any): Promise<TSpreadSheet[]> => {
     if (!xlsxFile) throw fileNotFound();
 
     const workBook = XLSX.read(xlsxFile.buffer, { type: "buffer" });
@@ -18,7 +22,7 @@ export class TagsServices {
     return this.spreadSheet;
   };
 
-  getTagTable = async (format?: string) => {
+  getTagTable = async (format?: string): Promise<string | TSpreadSheet[]> => {
     if (this.spreadSheet.length === 0) throw emptyFile();
 
     if (format === "table") {
@@ -30,7 +34,7 @@ export class TagsServices {
     return this.spreadSheet;
   };
 
-  updateTable = async (tagId: string, data: Partial<TSpreadSheet>) => {
+  updateTable = async (tagId: string, data: Partial<TSpreadSheet>): Promise<TSpreadSheet> => {
     const isValid = this.validateData(data);
     if (!isValid) throw invalidData();
 
@@ -42,7 +46,7 @@ export class TagsServices {
     return this.spreadSheet[rowIndex];
   };
 
-  deleteRow = async (tagId: string) => {
+  deleteRow = async (tagId: string): Promise<TSpreadSheet> => {
     const rowIndex = this.spreadSheet.findIndex((spreadSheet) => spreadSheet.Tag === tagId);
     if (rowIndex === -1) throw tagNotFound();
 
