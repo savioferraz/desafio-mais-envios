@@ -6,5 +6,6 @@ const tagRouter = Router();
 const tagController = new TagController();
 
 tagRouter.route("/").post(upload.single("file"), tagController.uploadTagTable);
+tagRouter.route("/").get(tagController.getTagTable);
 
 export default tagRouter;

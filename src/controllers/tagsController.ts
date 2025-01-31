@@ -16,4 +16,14 @@ export class TagController {
       next(e);
     }
   };
+
+  getTagTable = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const result = await this.tagsServices.getTagTable();
+
+      res.status(httpStatus.OK).send(result);
+    } catch (e) {
+      next(e);
+    }
+  };
 }

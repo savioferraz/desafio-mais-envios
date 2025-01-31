@@ -1,44 +1,17 @@
 import { ApplicationError } from "./protocol";
 
-function invalidFileFormatError(): ApplicationError {
+function fileNotFound(): ApplicationError {
   return {
-    type: "invalidFileFormatError",
-    message: "Tipo de arquivo inválido. Somente são aceitos arquivos .csv",
+    type: "fileNotFound",
+    message: "Arquivo não enviado. Deve ser enviado um arquivo do tipo .xlsx",
   };
 }
 
-function invalidCsvHeaderError(): ApplicationError {
+function emptyFile(): ApplicationError {
   return {
-    type: "invalidCsvHeaderError",
-    message: "Cabeçalhos do csv inválidos.",
+    type: "emptyFile",
+    message: "Não há tabelas para serem exibidas",
   };
 }
 
-function invalidCsvDataError(): ApplicationError {
-  return {
-    type: "invalidCsvDataError",
-    message: "Dados do csv inválidos.",
-  };
-}
-
-function invalidProductCodeError(): ApplicationError {
-  return {
-    type: "invalidProductCodeError",
-    message: "Código de produto inexistente.",
-  };
-}
-
-function invalidPriceError(): ApplicationError {
-  return {
-    type: "invalidPriceError",
-    message: "Código de produto inexistente.",
-  };
-}
-
-export {
-  invalidFileFormatError,
-  invalidCsvHeaderError,
-  invalidCsvDataError,
-  invalidProductCodeError,
-  invalidPriceError,
-};
+export { fileNotFound, emptyFile };
